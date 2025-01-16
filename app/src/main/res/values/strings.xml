@@ -5,6 +5,10 @@
 
     <!-- Buttons -->
     <string name="loginButton">Log in</string>
+    <string name="settingsButton">Settings</string>
+    <string name="hostButton">Host</string>
+    <string name="statsButton">Stats</string>
+
 
     <!-- Titles -->
     <string name="app_name">Quizzical</string>
