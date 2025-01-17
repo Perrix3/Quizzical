@@ -1,4 +1,5 @@
 <resources>
+    <string name="default_web_client_id">858097682478-lvkhf614h5o625bl41h4kl16ep5iqh3r.apps.googleusercontent.com</string>
 
     <!-- Texts -->
     <string name="description">This is a WIP</string>

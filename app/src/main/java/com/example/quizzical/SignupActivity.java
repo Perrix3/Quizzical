@@ -45,9 +45,11 @@ public class SignupActivity extends AppCompatActivity {
     private void signUp(String mail, String pwd, String confPwd){
         if(TextUtils.isEmpty(mail)||TextUtils.isEmpty(pwd)||TextUtils.isEmpty(confPwd)){
             Toast.makeText(this, "You must fill all the fields.", Toast.LENGTH_SHORT).show();
+            Log.w("Signup", "Not all fields are filled.");
             return;
         }else if(!pwd.equals(confPwd)){
             Toast.makeText(this, "Passwords don't match.", Toast.LENGTH_SHORT).show();
+            Log.w("Signup", "Passwords don't match.");
             return;
         } else{
             mAuth.createUserWithEmailAndPassword(mail,pwd).addOnCompleteListener(task -> {
