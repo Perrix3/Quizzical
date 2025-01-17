@@ -33,16 +33,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Gets the editTexts
         mail=findViewById(R.id.editMail);
         pwd=findViewById(R.id.editPwd);
-
+        //Gets buttons
         login=findViewById(R.id.loginButton);
         signup=findViewById(R.id.signUp);
-
+        //Gets imageButtons
         github=findViewById(R.id.github);
         google=findViewById(R.id.google);
 
-    //Send to login method
+        mAuth = FirebaseAuth.getInstance();
+
+
+        //Send to login method
         login.setOnClickListener(view ->  {
             String email=mail.getText().toString();
             String pass=pwd.getText().toString();
@@ -82,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) { //If correct, send a toast and send to next view
                     FirebaseUser user=mAuth.getCurrentUser();
                     Toast.makeText(LoginActivity.this, "Login successful. Welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(LoginActivity.this, SignupActivity.class);
+                    Intent intent=new Intent(LoginActivity.this, MainMenuActivity.class);
                     startActivity(intent);
                 } else { //If not, give error message
                     Toast.makeText(LoginActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
