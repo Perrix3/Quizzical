@@ -41,6 +41,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("androidx.credentials:credentials:1.0.0")
+    implementation("com.google.android.gms:play-services-auth:18.1.0")
+    implementation("com.github.bumptech.glide:glide:4.11.0")
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))

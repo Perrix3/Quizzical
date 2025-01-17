@@ -2,15 +2,26 @@
 
     <!-- Texts -->
     <string name="description">This is a WIP</string>
+    <string name="gmailLogin">Enter your Gmail here</string>
+    <string name="pwdLogin">Enter your password here</string>
+    <string name="gmail">Gmail: </string>
+    <string name="pwd">Password: </string>
+    <string name="login">Log in</string>
+    <string name="githubLogin">Use GitHub</string>
+    <string name="confPwd">Confirm Password:</string>
+    <string name="conf">Enter your password again</string>
 
     <!-- Buttons -->
     <string name="loginButton">Log in</string>
     <string name="settingsButton">Settings</string>
     <string name="hostButton">Host</string>
     <string name="statsButton">Stats</string>
+    <string name="signup">Sign up</string>
+
 
 
     <!-- Titles -->
     <string name="app_name">Quizzical</string>
+    <string name="loginTitle">Log into Quizzical</string>
 
 </resources>
