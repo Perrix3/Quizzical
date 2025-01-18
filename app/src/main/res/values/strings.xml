@@ -11,6 +11,7 @@
     <string name="githubLogin">Use GitHub</string>
     <string name="confPwd">Confirm Password:</string>
     <string name="conf">Enter your password again</string>
+    <string name="welcome">Welcome to Quizzical!</string>
 
     <!-- Buttons -->
     <string name="loginButton">Log in</string>
@@ -18,6 +19,7 @@
     <string name="hostButton">Host</string>
     <string name="statsButton">Stats</string>
     <string name="signup">Sign up</string>
+    <string name="playButton">Start Playing</string>
 
 
 
