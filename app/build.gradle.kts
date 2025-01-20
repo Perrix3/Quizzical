@@ -57,4 +57,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
 
     implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("com.android.support:appcompat-v7:28.0.0")
+    implementation ("com.android.support:recyclerview-v7:28.0.0")
+
 }
