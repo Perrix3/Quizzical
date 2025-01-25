@@ -85,19 +85,19 @@
             android:layout_gravity="center" />
 
         <Button
-            android:id="@+id/menuOption1"
+            android:id="@+id/profileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/profileButton" />
 
         <Button
-            android:id="@+id/menuOption2"
+            android:id="@+id/statsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/statsButton" />
 
         <Button
-            android:id="@+id/menuOption3"
+            android:id="@+id/settingsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settingsButton" />

@@ -1,8 +1,10 @@
 package com.example.quizzical;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -25,6 +27,7 @@ public class MainMenuActivity extends AppCompatActivity {
         menu = findViewById(R.id.slidingMenu);
         ImageButton menuButton = findViewById(R.id.menuButton);
         ImageButton closeButton = findViewById(R.id.closeButton);
+        Button settingsButton = findViewById(R.id.settingsButton);
 
         RecyclerView recyclerView = findViewById(R.id.gameHistory);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -40,6 +43,16 @@ public class MainMenuActivity extends AppCompatActivity {
 
         menuButton.setOnClickListener(view -> toggleMenu());
         closeButton.setOnClickListener(view -> toggleMenu());
+
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainMenuActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
