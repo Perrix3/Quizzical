@@ -1,6 +1,6 @@
 package com.example.quizzical;
 
-public class gameHistoryClass {
+public class GameHistoryClass {
 
     //Class used to save games to place into game history, data types are subject to change.
 
@@ -9,7 +9,7 @@ public class gameHistoryClass {
     private String result;
     private String time;
 
-    public gameHistoryClass(String date, String opponent, String result, String time){
+    public GameHistoryClass(String date, String opponent, String result, String time){
         this.date=date;
         this.opponent=opponent;
         this.result=result;

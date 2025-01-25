@@ -6,6 +6,9 @@ plugins {
 android {
     namespace = "com.example.quizzical"
     compileSdk = 34
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 
     defaultConfig {
         applicationId = "com.example.quizzical"
@@ -33,31 +36,27 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.appcompat)
+    implementation(libs.appcompat) // This should already map to androidx.appcompat
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Replace 'com.android.support' libraries with 'androidx' equivalents
+    implementation("androidx.recyclerview:recyclerview:1.3.1") // Replaces recyclerview-v7
+    implementation("androidx.appcompat:appcompat:1.6.1") // Replaces appcompat-v7
+
     implementation("androidx.credentials:credentials:1.0.0")
     implementation("com.google.android.gms:play-services-auth:18.1.0")
     implementation("com.github.bumptech.glide:glide:4.11.0")
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    // Add the dependency for the Firebase SDK for Google Analytics
     implementation("com.google.firebase:firebase-analytics")
-    // TODO: Add the dependencies for any other Firebase products you want to use
-    // See https://firebase.google.com/docs/android/setup#available-libraries
-    // For example, add the dependencies for Firebase Authentication and Cloud Firestore
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
 
-    implementation ("com.google.code.gson:gson:2.8.9")
-    implementation ("com.android.support:appcompat-v7:28.0.0")
-    implementation ("com.android.support:recyclerview-v7:28.0.0")
-
+    implementation("com.google.code.gson:gson:2.8.9")
 }
