@@ -10,7 +10,7 @@
         android:id="@+id/menuButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background=""
+        android:background="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:scaleType="fitCenter"
@@ -80,6 +80,40 @@
             android:layout_height="wrap_content"
             android:text="@string/statsButton" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/slidingMenu"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:background="#cccccc"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/closeButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/left_arrow"
+            android:padding="8dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/menuOption1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 1" />
+
+        <Button
+            android:id="@+id/menuOption2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 2" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
