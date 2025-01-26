@@ -54,7 +54,7 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         Button profileButton = findViewById(R.id.profileButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+        profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainMenuActivity.this, ProfileActivity.class);
@@ -63,7 +63,7 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         Button statsButton = findViewById(R.id.statsButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+        statsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainMenuActivity.this, StatsActivity.class);
