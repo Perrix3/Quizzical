@@ -27,7 +27,6 @@ public class MainMenuActivity extends AppCompatActivity {
         menu = findViewById(R.id.slidingMenu);
         ImageButton menuButton = findViewById(R.id.menuButton);
         ImageButton closeButton = findViewById(R.id.closeButton);
-        Button settingsButton = findViewById(R.id.settingsButton);
 
         RecyclerView recyclerView = findViewById(R.id.gameHistory);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -45,10 +44,29 @@ public class MainMenuActivity extends AppCompatActivity {
         closeButton.setOnClickListener(view -> toggleMenu());
 
 
+        Button settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainMenuActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button profileButton = findViewById(R.id.profileButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainMenuActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button statsButton = findViewById(R.id.statsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainMenuActivity.this, StatsActivity.class);
                 startActivity(intent);
             }
         });

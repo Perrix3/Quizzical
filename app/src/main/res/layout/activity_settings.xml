@@ -20,7 +20,7 @@
         android:id="@+id/dataLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Data"
+        android:text="@string/data"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/backButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         android:id="@+id/clearData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear Data"
+        android:text="@string/clearData"
         app:layout_constraintTop_toBottomOf="@id/dataLabel"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
@@ -41,7 +41,7 @@
         android:id="@+id/checkData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check Data"
+        android:text="@string/checkData"
         app:layout_constraintTop_toBottomOf="@id/clearData"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
@@ -51,7 +51,7 @@
         android:id="@+id/languageLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Language"
+        android:text="@string/language"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/checkData"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,13 +72,13 @@
             android:id="@+id/english"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="English"/>
+            android:text="@string/english"/>
 
         <RadioButton
             android:id="@+id/spanish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Spanish"
+            android:text="@string/spanish"
             android:layout_marginLeft="10dp" />
     </RadioGroup>
 
@@ -86,7 +86,7 @@
         android:id="@+id/themeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Theme"
+        android:text="@string/theme"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/languageGroup"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,20 +107,20 @@
             android:id="@+id/darkTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dark"/>
+            android:text="@string/dark"/>
 
         <RadioButton
             android:id="@+id/lightTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Light"
+            android:text="@string/light"
             android:layout_marginLeft="10dp"/>
 
         <RadioButton
             android:id="@+id/systemTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="System"
+            android:text="@string/system"
             android:layout_marginLeft="10dp"/>
     </RadioGroup>
 
@@ -128,7 +128,7 @@
         android:id="@+id/accessibility_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Accessibility"
+        android:text="@string/accessibility"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/themeGroup"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +139,7 @@
         android:id="@+id/text_size_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text Size"
+        android:text="@string/textSize"
         app:layout_constraintTop_toBottomOf="@id/accessibility_label"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
@@ -159,27 +159,27 @@
             android:id="@+id/small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Small"/>
+            android:text="@string/small"/>
 
         <RadioButton
             android:id="@+id/medium_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium"
+            android:text="@string/medium"
             android:layout_marginLeft="10dp"/>
 
         <RadioButton
             android:id="@+id/large_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Large"
+            android:text="@string/large"
             android:layout_marginLeft="10dp"/>
 
         <RadioButton
             android:id="@+id/extra_large_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Extra Large"
+            android:text="@string/extraLarge"
             android:layout_marginLeft="10dp"/>
     </RadioGroup>
 

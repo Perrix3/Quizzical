@@ -26,8 +26,8 @@ public class SettingsActivity extends AppCompatActivity {
         RadioButton darkTheme = findViewById(R.id.darkTheme);
         RadioButton lightTheme = findViewById(R.id.lightTheme);
         RadioButton systemTheme = findViewById(R.id.systemTheme);
-        ImageButton backButton = findViewById(R.id.backButton);
 
+        ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(SettingsActivity.this, MainMenuActivity.class);
             startActivity(intent);
