@@ -71,6 +71,16 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+        Button startPlayingButton = findViewById(R.id.center);
+        startPlayingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenuActivity.this, PlayGameActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 

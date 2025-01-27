@@ -17,6 +17,8 @@
     <string name="theme">Theme</string>
     <string name="accessibility">Accessibility</string>
     <string name="textSize">Text Size</string>
+    <string name="putCode">Introduce the game code</string>
+    <string name="enterCode">Enter code</string>
 
     <!-- Buttons -->
     <string name="loginButton">Log in</string>
@@ -28,6 +30,10 @@
     <string name="profileButton">Profile</string>
     <string name="clearData">Clear Data</string>
     <string name="checkData">Check Stored Data</string>
+    <string name="Continue">Continue</string>
+    <string name="hostGame">Host game</string>
+    <string name="joinGame">Join game</string>
+    <string name="cancel">Cancel</string>
 
     <!-- RadioButtons -->
     <string name="english">English</string>
