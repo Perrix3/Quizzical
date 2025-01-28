@@ -19,6 +19,7 @@
     <string name="textSize">Text Size</string>
     <string name="putCode">Introduce the game code</string>
     <string name="enterCode">Enter code</string>
+    <string name="chooseDiff">Choose a difficult</string>
 
     <!-- Buttons -->
     <string name="loginButton">Log in</string>
@@ -34,6 +35,9 @@
     <string name="hostGame">Host game</string>
     <string name="joinGame">Join game</string>
     <string name="cancel">Cancel</string>
+    <string name="easyButton">Easy</string>
+    <string name="mediumButton">Medium</string>
+    <string name="hardButton">Hard</string>
 
     <!-- RadioButtons -->
     <string name="english">English</string>

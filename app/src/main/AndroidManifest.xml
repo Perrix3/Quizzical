@@ -31,5 +31,6 @@
         <activity android:name=".StatsActivity"/>
         <activity android:name=".PlayGameActivity" android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity android:name=".JoinActivity" android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity android:name=".ChooseDifficultyActivity" android:theme="@style/Theme.AppCompat.Dialog"/>
     </application>
 </manifest>
