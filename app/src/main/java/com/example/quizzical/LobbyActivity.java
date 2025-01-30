@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,6 +35,12 @@ public class LobbyActivity extends AppCompatActivity {
         isHost = getIntent().getBooleanExtra("isHost", false);
         client = (GameClient) getIntent().getSerializableExtra("client");
         playerNames = new ArrayList<>();
+
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(view -> { //Stop Host server if host, stop client if not host
+            Intent intent = new Intent(LobbyActivity.this, MainMenuActivity.class);
+            startActivity(intent);
+        });
 
         //Add host to player list
         if (isHost) {
