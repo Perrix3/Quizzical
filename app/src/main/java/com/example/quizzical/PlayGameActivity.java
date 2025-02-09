@@ -32,7 +32,7 @@ public class PlayGameActivity extends AppCompatActivity {
         hostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PlayGameActivity.this, EnterPortActivity.class);
+                Intent intent = new Intent(PlayGameActivity.this, ChooseDifficultyActivity.class);
                 startActivity(intent);
                 finish();
             }

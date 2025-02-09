@@ -4,15 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quizzical.server.GameClient;
-import com.example.quizzical.server.GameServer;
 
 public class ChooseDifficultyActivity extends AppCompatActivity {
-    private GameServer gameServer;
-    private int port;
+    private final int port = 8089;
+    private final String serverIP = "192.168.1.144"; // Change this to your actual server IP
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,51 +23,29 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
         Button mediumButton = findViewById(R.id.medium);
         Button hardButton = findViewById(R.id.hard);
 
-        Intent intent = getIntent();
-        port = intent.getIntExtra("port", 0);
-        gameServer = new GameServer(port);
-
-        easyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startGame(1);
-            }
-        });
-
-        mediumButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startGame(2);
-            }
-        });
-
-        hardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startGame(3);
-            }
-        });
-
+        easyButton.setOnClickListener(v -> startGame(1));
+        mediumButton.setOnClickListener(v -> startGame(2));
+        hardButton.setOnClickListener(v -> startGame(3));
     }
 
     private void startGame(int difficulty) {
         new Thread(() -> {
-            gameServer.start();
+            GameClient client = new GameClient(serverIP, port);
+            boolean connected = client.connect();
+
+            if (connected) {
+                runOnUiThread(() -> {
+                    Intent intent = new Intent(ChooseDifficultyActivity.this, LobbyActivity.class);
+                    intent.putExtra("isHost", true);
+                    intent.putExtra("port", port);
+                    intent.putExtra("difficulty", difficulty);
+                    intent.putExtra("serverIP", serverIP);
+                    startActivity(intent);
+                    finish();
+                });
+            } else {
+                runOnUiThread(() -> Toast.makeText(this, "Failed to connect to server", Toast.LENGTH_SHORT).show());
+            }
         }).start();
-        new Thread(() -> {
-            GameClient client = new GameClient("192.168.1.245", port);
-            client.connect();
-            Intent intent = new Intent(ChooseDifficultyActivity.this, LobbyActivity.class);
-            intent.putExtra("isHost", true);
-            intent.putExtra("port", port);
-            intent.putExtra("difficulty", difficulty);
-            intent.putExtra("client", client);
-            startActivity(intent);
-            finish();
-        }).start();
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }
