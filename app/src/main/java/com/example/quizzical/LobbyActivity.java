@@ -1,9 +1,11 @@
 package com.example.quizzical;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +44,7 @@ public class LobbyActivity extends AppCompatActivity {
         // Check if client is initialized and connected
         if (client == null || !client.isConnected()) {
             Log.e(TAG, "GameClient is not initialized or not connected. Finishing activity.");
-            finish(); // Or handle the error as you see fit.
+            finish();
             return;
         }
 
@@ -50,10 +52,10 @@ public class LobbyActivity extends AppCompatActivity {
 
         if (isHost) {
             startGameButton.setVisibility(View.VISIBLE);
-            startGameButton.setOnClickListener(v -> { // Use lambda expression for conciseness
+            startGameButton.setOnClickListener(v -> {
                 // Go to game
                 Log.d(TAG, "Starting the game!");
-                // ... your code to start the game activity ...
+
             });
         } else {
             startGameButton.setVisibility(View.GONE);
@@ -63,7 +65,6 @@ public class LobbyActivity extends AppCompatActivity {
             @Override
             public void onPlayerJoin(String playerName) {
                 Log.d(TAG, "New player joined: " + playerName);
-                // This callback is now redundant; the full player list is received in onPlayerListReceived
             }
 
             @Override
@@ -77,11 +78,19 @@ public class LobbyActivity extends AppCompatActivity {
             }
         });
 
-        executorService.execute(new Runnable() { // Anonymous inner class for network call
+        executorService.execute(new Runnable() {
             @Override
             public void run() {
                 client.sendMessage("getPlayers"); // Request initial player list from the server
             }
+        });
+
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(LobbyActivity.this, MainMenuActivity.class);
+            startActivity(intent);
+            finish();
+            return;
         });
     }
 
@@ -98,13 +107,12 @@ public class LobbyActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // It's crucial to close the connection when the activity is destroyed
         if (isFinishing()) { // Check if the activity is actually finishing
             GameClient client = GameClient.getInstance();
             if (client != null) {
                 client.closeConnection();
             }
         }
-        executorService.shutdown(); // Important: Shut down the executor service
+        executorService.shutdown();
     }
 }

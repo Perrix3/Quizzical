@@ -1,7 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Quizzical" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="CustomButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="Theme.Quizzical" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorPrimaryVariant">#4A148C</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <!-- Secondary (accent) color -->
+        <item name="colorSecondary">#FFD700</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <!-- Background and text colors -->
+        <item name="android:windowBackground">#6A1B9A</item>
+        <item name="android:textColor">#FFFFFF</item>
+
+        <!-- Button styles -->
+        <item name="android:buttonStyle">@style/CustomButton</item>
+
+        <!-- Fonts -->
+        <item name="android:fontFamily">@font/lexend</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">#4A148C</item>
+        <item name="android:navigationBarColor">#4A148C</item>
     </style>
 </resources>
