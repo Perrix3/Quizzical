@@ -2,7 +2,6 @@ package com.example.quizzical;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.quizzical.server.GameClient;
 
 public class ChooseDifficultyActivity extends AppCompatActivity {
+    private static final String TAG = "ChooseDifficulty";
     private final int port = 8089;
     private final String serverIP = "192.168.1.144"; // Change this to your actual server IP
 
@@ -30,22 +30,21 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
 
     private void startGame(int difficulty) {
         new Thread(() -> {
-            GameClient client = new GameClient(serverIP, port);
-            boolean connected = client.connect();
+            final GameClient client = GameClient.getInstance(serverIP, port); // Initialize and connect
 
-            if (connected) {
-                runOnUiThread(() -> {
-                    Intent intent = new Intent(ChooseDifficultyActivity.this, LobbyActivity.class);
-                    intent.putExtra("isHost", true);
-                    intent.putExtra("port", port);
-                    intent.putExtra("difficulty", difficulty);
-                    intent.putExtra("serverIP", serverIP);
-                    startActivity(intent);
-                    finish();
-                });
+            if (client != null && client.isConnected()) {
+                runOnUiThread(() -> startLobbyActivity(difficulty));
             } else {
                 runOnUiThread(() -> Toast.makeText(this, "Failed to connect to server", Toast.LENGTH_SHORT).show());
             }
         }).start();
+    }
+
+    private void startLobbyActivity(int difficulty) {
+        Intent intent = new Intent(ChooseDifficultyActivity.this, LobbyActivity.class);
+        intent.putExtra("isHost", true);
+        intent.putExtra("difficulty", difficulty);
+        startActivity(intent);
+        finish();
     }
 }

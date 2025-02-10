@@ -3,7 +3,6 @@ package com.example.quizzical;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.quizzical.server.GameClient;
 
 public class JoinActivity extends AppCompatActivity {
+    private static final String TAG = "JoinActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class JoinActivity extends AppCompatActivity {
 
             if (gameCode.isEmpty()) {
                 Toast.makeText(JoinActivity.this, R.string.enterCodeToast, Toast.LENGTH_SHORT).show();
-                Log.w("Game Joining", "A code must be introduced.");
+                Log.w(TAG, "A code must be introduced.");
                 return;
             }
 
@@ -35,29 +36,29 @@ public class JoinActivity extends AppCompatActivity {
                 String serverIP = "192.168.1.144"; // Change this to dynamic input if needed
 
                 new Thread(() -> {
-                    GameClient client = new GameClient(serverIP, port);
-                    boolean isConnected = client.connect();
+                    final GameClient client = GameClient.getInstance(serverIP, port); // Initialize and connect
 
-                    runOnUiThread(() -> {
-                        if (isConnected) {
+                    if (client != null && client.isConnected()) {
+                        runOnUiThread(() -> {
                             Toast.makeText(JoinActivity.this, R.string.connectedToast, Toast.LENGTH_SHORT).show();
-                            Log.i("Game Joining", "Connected to server on port " + port);
+                            Log.i(TAG, "Connected to server on port " + port);
 
                             Intent intent = new Intent(JoinActivity.this, LobbyActivity.class);
                             intent.putExtra("isHost", false);
-                            intent.putExtra("port", port);
-                            intent.putExtra("serverIP", serverIP);
+                            intent.putExtra("difficulty", 0); // You might not need to pass difficulty here
                             startActivity(intent);
                             finish();
-                        } else {
+                        });
+                    } else {
+                        runOnUiThread(() -> {
                             Toast.makeText(JoinActivity.this, R.string.connectFailedToast, Toast.LENGTH_SHORT).show();
-                            Log.e("Game Joining", "Couldn't connect to port " + port);
-                        }
-                    });
+                            Log.e(TAG, "Couldn't connect to port " + port);
+                        });
+                    }
                 }).start();
             } catch (NumberFormatException e) {
                 Toast.makeText(JoinActivity.this, "Invalid port value", Toast.LENGTH_SHORT).show();
-                Log.e("Game Joining", "Invalid port: " + e.getMessage());
+                Log.e(TAG, "Invalid port: " + e.getMessage());
             }
         });
     }
