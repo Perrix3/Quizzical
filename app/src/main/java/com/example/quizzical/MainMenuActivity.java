@@ -41,9 +41,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //Test data
         List<GameHistoryClass> gameHistory = new ArrayList<>();
-        gameHistory.add(new GameHistoryClass("19/01/2025", "Jeff", "Victory", "10 mins."));
-        gameHistory.add(new GameHistoryClass("20/01/2025", "Jester", "Defeat", "15 mins."));
-        gameHistory.add(new GameHistoryClass("21/01/2025", "Skibidi", "Victory", "8 mins."));
+        gameHistory.add(new GameHistoryClass("19/01/2025", "3", "Victory", "10 mins."));
+        gameHistory.add(new GameHistoryClass("20/01/2025", "4", "Defeat", "15 mins."));
+        gameHistory.add(new GameHistoryClass("21/01/2025", "3", "Victory", "8 mins."));
 
         GameHistoryAdapter adapter = new GameHistoryAdapter(this, gameHistory);
         recyclerView.setAdapter(adapter);

@@ -21,6 +21,9 @@ public class GameClient {
     private BufferedReader in;
     private List<String> playerNames = new ArrayList<>(); // Store player names
     private Handler mainHandler;
+    private int currentPosition = 0;
+    private boolean isMyTurn = false;
+    private int myPlayerId;
 
     private OnMessageReceivedListener messageListener;
     private OnPlayerJoinListener playerJoinListener;
@@ -166,6 +169,43 @@ public class GameClient {
                     if (gameStartListener != null) {
                         mainHandler.post(() -> gameStartListener.onGameStart());
                     }
+                } else if(message.startsWith("id|")){
+                    myPlayerId = Integer.parseInt(message.substring(3));
+                    setMyPlayerId(myPlayerId);
+                    Log.d(TAG, "My player ID: " + myPlayerId);
+                }else if(message.startsWith("turn|")){
+                    int playerId = Integer.parseInt(message.substring(5));
+                    isMyTurn = (playerId == myPlayerId);
+                    if(messageListener != null){
+                        mainHandler.post(() -> messageListener.onMessageReceived(finalMessage));
+                    }
+                    if(isMyTurn){
+                        mainHandler.post(() -> {
+                            if (messageListener != null) {
+                                messageListener.onMessageReceived("Your turn!");
+                            }
+                        });
+                    }
+                } else if(message.startsWith("move|")){
+                    String[] parts = message.split("\\|");
+                    int roll = Integer.parseInt(parts[1]);
+                    int playerId = Integer.parseInt(parts[2]);
+
+                    if (playerId == myPlayerId) {
+                        currentPosition += roll;
+                        mainHandler.post(() -> {
+                            if (messageListener != null) {
+                                messageListener.onMessageReceived("Moved to " + currentPosition);
+                            }
+                        });
+                        sendMessage("question|" + "category" + "|" + "lang");
+                    } else {
+                        mainHandler.post(() -> {
+                            if (messageListener != null) {
+                                messageListener.onMessageReceived("Player " + playerId + " moved " + roll + " spaces.");
+                            }
+                        });
+                    }
                 }
             }
         } catch (IOException e) {
@@ -217,7 +257,6 @@ public class GameClient {
             }
         }
 
-        // Notify listeners (if any) that the player list has been updated
         if (playerJoinListener != null) {
             playerJoinListener.onPlayerListReceived(playerNames);
         }
@@ -233,7 +272,6 @@ public class GameClient {
             playerNames.remove(playerName);
         }
 
-        // Notify listeners (if any) that the player list has been updated
         if (playerJoinListener != null) {
             playerJoinListener.onPlayerListReceived(playerNames);
         }
@@ -262,6 +300,20 @@ public class GameClient {
 
     public void setOnGameStartListener(OnGameStartListener listener) {
         this.gameStartListener = listener;
+    }
+
+    public int getMyPlayerId() { // Getter for myPlayerId
+        return myPlayerId;
+    }
+
+    public void setMyPlayerId(int myPlayerId) { // Setter for myPlayerId
+        this.myPlayerId = myPlayerId;
+    }
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+    public void setCurrentPosition() {
+        this.currentPosition = currentPosition;
     }
 
     public List<String> getPlayerNames() {
