@@ -52,6 +52,8 @@
     <string name="medium">Medium</string>
     <string name="large">Large</string>
     <string name="extraLarge">Extra Large</string>
+    <string name="easy">Easy</string>
+    <string name="hard">Hard</string>
 
     <!-- Titles -->
     <string name="app_name">Quizzical</string>
@@ -61,7 +63,8 @@
     <string name="enterCodeToast">Please enter a game code.</string>
     <string name="connectedToast">Connected to game!</string>
     <string name="connectFailedToast">Failed to connect to game.</string>
-    <string name="rangePort">Code must be between 5000-6000.</string>
+    <string name="host">You are the host!</string>
+    <string name="chooseDif">Please select a difficulty level.</string>
 
 
 </resources>

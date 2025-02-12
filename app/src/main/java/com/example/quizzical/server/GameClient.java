@@ -1,5 +1,7 @@
 package com.example.quizzical.server;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -18,11 +20,13 @@ public class GameClient {
     private PrintWriter out;
     private BufferedReader in;
     private List<String> playerNames = new ArrayList<>(); // Store player names
-    private boolean isHost;
+    private Handler mainHandler;
 
     private OnMessageReceivedListener messageListener;
     private OnPlayerJoinListener playerJoinListener;
     private OnQuestionReceivedListener questionListener;
+    private OnConnectionEstablishedListener connectionEstablishedListener;
+    private OnGameStartListener gameStartListener;
 
 
     private static final Scanner scanner = new Scanner(System.in); // Global scanner  (Remove in production)
@@ -40,6 +44,16 @@ public class GameClient {
     // Interface to handle received questions
     public interface OnQuestionReceivedListener {
         void onQuestionReceived(String question, String[] answers, int correctIndex);
+    }
+
+
+
+    public interface OnConnectionEstablishedListener {
+        void onConnectionEstablished();
+    }
+
+    public interface OnGameStartListener {
+        void onGameStart();
     }
 
     public static GameClient getInstance(String serverAddress, int serverPort) {
@@ -80,8 +94,14 @@ public class GameClient {
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+            mainHandler = new Handler(Looper.getMainLooper()); // Get the main thread's Handler
+
             new Thread(this::listenForMessages).start(); // Start listening for server messages
             Log.d(TAG, "Connected to server: " + serverAddress + ":" + serverPort);
+
+            if (connectionEstablishedListener != null) {
+                mainHandler.post(() -> connectionEstablishedListener.onConnectionEstablished());            }
+
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -132,16 +152,20 @@ public class GameClient {
                 System.out.println("Server: " + message);
                 Log.d(TAG, "Received message: " + message);
 
-                if (messageListener != null) {
-                    messageListener.onMessageReceived(message);
-                }
+                String finalMessage = message;
 
-                else if (message.startsWith("players|")) {
-                    handlePlayerListMessage(message);
+                if (messageListener != null) {
+                    mainHandler.post(() -> messageListener.onMessageReceived(finalMessage));
+                } else if (message.startsWith("players|")) {
+                    mainHandler.post(() -> handlePlayerListMessage(finalMessage));
                 } else if (message.startsWith("Player ")) { // Handle join/leave
-                    handlePlayerUpdateMessage(message);
+                    mainHandler.post(() -> handlePlayerUpdateMessage(finalMessage));
                 } else if (message.startsWith("question|")) {
-                    handleQuestionMessage(message);
+                    mainHandler.post(() -> handleQuestionMessage(finalMessage));
+                } else if (message.equals("Start".trim())){
+                    if (gameStartListener != null) {
+                        mainHandler.post(() -> gameStartListener.onGameStart());
+                    }
                 }
             }
         } catch (IOException e) {
@@ -227,16 +251,21 @@ public class GameClient {
         this.questionListener = listener;
     }
 
+
+    public void setOnConnectionEstablishedListener(OnConnectionEstablishedListener listener) {
+        this.connectionEstablishedListener = listener;
+    }
+
+    public OnConnectionEstablishedListener getOnConnectionEstablishedListener() {
+        return this.connectionEstablishedListener;
+    }
+
+    public void setOnGameStartListener(OnGameStartListener listener) {
+        this.gameStartListener = listener;
+    }
+
     public List<String> getPlayerNames() {
         return playerNames;
-    }
-
-    public boolean isHost() {
-        return isHost;
-    }
-
-    public void setHost(boolean host) {
-        isHost = host;
     }
 
     // Testing server (Remove in production)

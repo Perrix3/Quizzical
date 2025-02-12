@@ -1,16 +1,22 @@
 package com.example.quizzical;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.quizzical.server.GameClient;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +24,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private LinearLayout menu;
     private boolean isMenuVisible = false;
+    private final int port = 8089;
+    private final String ip = "192.168.1.144";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,7 @@ public class MainMenuActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainMenuActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -57,7 +65,7 @@ public class MainMenuActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainMenuActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
@@ -66,7 +74,7 @@ public class MainMenuActivity extends AppCompatActivity {
         statsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainMenuActivity.this, StatsActivity.class);
+                Intent intent = new Intent(MainMenuActivity.this, StatsActivity.class);
                 startActivity(intent);
             }
         });
@@ -75,13 +83,28 @@ public class MainMenuActivity extends AppCompatActivity {
         startPlayingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, PlayGameActivity.class);
-                startActivity(intent);
+                new Thread(() -> {
+                    final GameClient client = GameClient.getInstance(ip, port); // Initialize and connect
+
+                    if (client != null && client.isConnected()) {
+                        runOnUiThread(() -> {
+                            Toast.makeText(MainMenuActivity.this, R.string.connectedToast, Toast.LENGTH_SHORT).show();
+                            Log.i(".MainMenuActivity", "Connected to server on port " + port);
+
+                            Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
+                            startActivity(intent);
+                        });
+                    } else {
+                        runOnUiThread(() -> {
+                            Toast.makeText(MainMenuActivity.this, R.string.connectFailedToast, Toast.LENGTH_SHORT).show();
+                            Log.e(".MainMenuActivity", "Couldn't connect to port " + port);
+                        });
+                    }
+                }).start();
+
+
             }
         });
-
-
-
     }
 
     private void toggleMenu() {
