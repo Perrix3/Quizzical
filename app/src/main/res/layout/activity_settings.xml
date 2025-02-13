@@ -35,6 +35,7 @@
         app:layout_constraintTop_toBottomOf="@id/dataLabel"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/yellowBackground"
         android:layout_marginLeft="25dp" />
 
     <Button
@@ -45,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/clearData"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/yellowBackground"
         android:layout_marginLeft="25dp" />
 
     <TextView

@@ -25,7 +25,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private LinearLayout menu;
     private boolean isMenuVisible = false;
     private final int port = 8089;
-    private final String ip = "192.168.1.144";
+    private final String ip = "192.168.191.196";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

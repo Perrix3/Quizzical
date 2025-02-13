@@ -80,6 +80,7 @@
         app:layout_constraintTop_toBottomOf="@id/difficulty"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/yellowBackground"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

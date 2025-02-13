@@ -73,6 +73,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/textPwd"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:backgroundTint="@color/yellowBackground"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="170dp"
         android:text="@string/login"/>
@@ -83,6 +84,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/loginButton"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:backgroundTint="@color/yellowBackground"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="25dp"
         android:text="@string/signup"/>
