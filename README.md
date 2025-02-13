@@ -6,14 +6,14 @@
 
 Quizzical is an Android application designed to help users learn and memorize information effectively through spaced repetition quizzes.  It leverages the principles of spaced repetition to optimize learning by presenting quiz questions at intervals that are dynamically adjusted based on the user's performance. This approach helps reinforce memory and makes studying more efficient.
 
-**Key Features (Based on available information, likely to be implemented or planned):**
+**Key Features:**
 
-*   **Progress Tracking:** The app likely tracks user progress, showing statistics on quiz performance, learning history, and areas needing more focus.
+*   **Progress Tracking:** The app tracks user progress, showing statistics on quiz performance, learning history, and areas needing more focus.
 *   **User-Friendly Interface:** The provided layout XML suggests a clean and intuitive user interface with elements like a main menu, game history display, and a sliding menu for navigation.
 *   **Customizable Settings:**  Potentially includes settings to adjust the spaced repetition algorithm, notification preferences, or other aspects of the user experience.
 *   **Offline Functionality:**  As a study tool, offline access to quizzes and learning data would be a valuable feature.
 
-**Likely Technologies Used:**
+**Technologies Used:**
 
 *   **Android SDK:** Native Android development using Java or Kotlin.
 *   **ConstraintLayout:** For flexible and efficient UI layouts.
