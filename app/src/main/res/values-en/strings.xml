@@ -1,12 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">858097682478-lvkhf614h5o625bl41h4kl16ep5iqh3r.apps.googleusercontent.com</string>
-
-    <!-- Texts -->
+    <string name="hard">Hard</string>
+    <string name="app_name">Quizzical</string>
     <string name="description">Quizzical is a trivia game. Have fun playing it!</string>
     <string name="gmailLogin">Enter your Gmail here</string>
     <string name="pwdLogin">Enter your password here</string>
-    <string name="gmail">Gmail: </string>
-    <string name="pwd">Password: </string>
+    <string name="gmail">"Gmail: "</string>
+    <string name="pwd">"Password: "</string>
     <string name="login">Log in</string>
     <string name="githubLogin">Use GitHub</string>
     <string name="confPwd">Confirm Password:</string>
@@ -21,9 +21,6 @@
     <string name="enterCode">Enter code</string>
     <string name="chooseDiff">Choose a difficult</string>
     <string name="enterPort">Enter a code</string>
-    <string name="portRange" translatable="false">(5000 – 6000)</string>
-
-    <!-- Buttons -->
     <string name="loginButton">Log in</string>
     <string name="settingsButton">Settings</string>
     <string name="hostButton">Host</string>
@@ -41,8 +38,6 @@
     <string name="mediumButton">Medium</string>
     <string name="hardButton">Hard</string>
     <string name="startButton">Start Game</string>
-
-    <!-- RadioButtons -->
     <string name="english">English</string>
     <string name="spanish">Spanish</string>
     <string name="dark">Dark</string>
@@ -53,13 +48,7 @@
     <string name="large">Large</string>
     <string name="extraLarge">Extra Large</string>
     <string name="easy">Easy</string>
-    <string name="hard">Hard</string>
-
-    <!-- Titles -->
-    <string name="app_name">Quizzical</string>
     <string name="loginTitle">Log into Quizzical</string>
-
-    <!-- Toasts -->
     <string name="enterCodeToast">Please enter a game code.</string>
     <string name="connectedToast">Connected to game!</string>
     <string name="connectFailedToast">Failed to connect to game.</string>
@@ -69,6 +58,4 @@
     <string name="win">You Won!</string>
     <string name="correct">Correct!</string>
     <string name="incorrect">Incorrect!</string>
-
-
 </resources>
