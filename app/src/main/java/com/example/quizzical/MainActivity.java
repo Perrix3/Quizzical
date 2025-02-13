@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //REMEMBER TO CHANGE BACKK !!!!!!!!!!!
-                Intent intent=new Intent(MainActivity.this, MainMenuActivity.class); //Changed login button for testing the rest of the app
+                Intent intent=new Intent(MainActivity.this, LoginActivity.class); //Changed login button for testing the rest of the app
                 startActivity(intent);
             }
         });
